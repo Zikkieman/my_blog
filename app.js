@@ -40,10 +40,12 @@ app.get("/compose", function(req, res){
 app.post("/compose", function(req, res){
   const post = {
     title: req.body.postTitle,
+    imageUrl: req.body.postImageUrl,
     content: req.body.postBody
   };
-
+  console.log(post.imageUrl)
   posts.push(post);
+  console.log(post);
 
   res.redirect("/");
 
@@ -58,6 +60,7 @@ app.get("/posts/:postName", function(req, res){
     if (storedTitle === requestedTitle) {
       res.render("post", {
         title: post.title,
+        image: post.imageUrl,
         content: post.content
       });
     }
@@ -65,6 +68,6 @@ app.get("/posts/:postName", function(req, res){
 
 });
 
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
+app.listen(5000, function() {
+  console.log("Server started on port 5000");
 });
